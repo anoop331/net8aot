@@ -1,3 +1,4 @@
+
 FROM mcr.microsoft.com/dotnet/sdk:8.0-jammy-amd64 AS build
 
 RUN apt-get update && \
@@ -18,9 +19,11 @@ WORKDIR AotLib
 
 # RUN ls
 # ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
-RUN dotnet publish -f net8.0 -r linux-arm64 -c Release -o /app/publish  -p:SysRoot=/crossrootfs/arm64/ 
+RUN dotnet publish -f net8.0 -r linux-arm64 -c Release -o /out  -p:SysRoot=/crossrootfs/arm64/ 
 
 WORKDIR /LibTest
 
-RUN dotnet publish -f net8.0 -r linux-arm64 --self-contained true -p:PublishSingleFile=true -o /app/publish
+RUN dotnet publish -f net8.0 -r linux-arm64 --self-contained true -p:PublishSingleFile=true -o /out 
+
+# RUN dotnet publish -f net8.0 -r linux-arm64   -o /out -p:SysRoot=/crossrootfs/arm64/ 
 
