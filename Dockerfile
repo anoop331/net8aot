@@ -23,7 +23,8 @@ RUN dotnet publish -f net8.0 -r linux-arm64 -c Release -o /out  -p:SysRoot=/cros
 
 WORKDIR /LibTest
 
-RUN dotnet publish -f net8.0 -r linux-arm64 --self-contained true -p:PublishSingleFile=true -o /out 
 
-# RUN dotnet publish -f net8.0 -r linux-arm64   -o /out -p:SysRoot=/crossrootfs/arm64/ 
+# RUN dotnet publish -f net8.0 -r linux-arm64 --self-contained true -p:PublishSingleFile=true -o /out 
+
+RUN dotnet publish -f net8.0 -r linux-arm64   -o /out -p:SysRoot=/crossrootfs/arm64/ 
 
